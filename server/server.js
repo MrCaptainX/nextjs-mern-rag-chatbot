@@ -194,13 +194,13 @@ app.post("/ask", async (req, res) => {
   try {
     const { question, sessionId } = req.body;
     if (!question || !sessionId) {
-      return res.status(400).json({ error: "Missing question or sessionId" });
+      return res.status(400).json({ error: "Send Both pls." });
     }
 
     if (!chats[sessionId]) chats[sessionId] = [];
 
     const queryVec = await gemEmb(question);
-    if (!queryVec) return res.status(500).json({ error: "Failed to embed query." });
+    if (!queryVec) return res.status(500).json({ error: "Failed." });
 
     const topChunks = searchDt(queryVec, botDetails[sessionId].chunkVecs, botDetails[sessionId].chunks, 3);
 
@@ -211,12 +211,12 @@ app.post("/ask", async (req, res) => {
 
     res.json({ answer });
   } catch (err) {
-    console.error("Ask route error:", err);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("ero:", err);
+    res.status(500).json({ error: "eRR" });
   }
 });
 
 
 app.listen(port, async () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`running http://localhost:${port}`);
 });
