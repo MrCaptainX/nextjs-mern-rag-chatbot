@@ -4,6 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import ChatMessage from '@/components/ChatMessage'; 
 import Link from 'next/link';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane , faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+
+
+
 export default function ChatPage() {
   const { id } = useParams();
   const [messages, setMessages] = useState([]);
@@ -93,20 +98,8 @@ export default function ChatPage() {
               href="/"
               className="p-2 rounded-md hover:bg-slate-100 transition-colors"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-5 h-5 text-slate-700"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
+             <FontAwesomeIcon icon={faChevronLeft} className="w-5 h-5 text-slate-700" />
+
             </Link>
             <h1 className="text-xl font-semibold text-slate-800">{name}</h1>
           </div>
@@ -135,20 +128,13 @@ export default function ChatPage() {
               className="w-[95%] bg-transparent p-2 text-slate-800 placeholder-slate-500 focus:outline-none"
               disabled={loading}
             />
-            <button
-              onClick={sendMessage}
-              disabled={loading || !input.trim()}
-              className="bg-blue-600 w-[40px] text-white p-2 rounded-md hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6"
-              >
-                <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
-              </svg>
-            </button>
+           <button
+  onClick={sendMessage}
+  disabled={loading || !input.trim()}
+  className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+>
+  <FontAwesomeIcon icon={faPaperPlane} className="w-6 h-6" />
+</button>
           </div>
         </div>
       </div>

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+
 
 const CreateBot = ({ whenDone , state , close }) => {
   const [chatbotName, setChatbotName] = useState('');
@@ -43,81 +46,90 @@ const CreateBot = ({ whenDone , state , close }) => {
   };
 
   return (
-    <div className={state ? 'block' : 'hidden'}>
-    <div className='fixed top-0 bottom-0 left-0 right-0 bg-black opacity-50' onClick={close}></div>
-    <div className="fixed min-h-screen flex items-center w-full  justify-center">
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-[90%] max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-800">Chatbot Setup</h1>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="chatbotName" className="block text-sm font-medium text-gray-700 mb-1">
-              Chatbot Name
-            </label>
-            <input
-              id="chatbotName"
-              type="text"
-              value={chatbotName}
-              onChange={(e) => setChatbotName(e.target.value)}
-              placeholder="Like Idiot Bot"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-              required
-            />
+    <div className={state ? "block" : "hidden"}>
+      <div
+        className="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-50"
+        onClick={close}
+      ></div>
+      <div className="fixed min-h-screen flex items-center w-full  justify-center">
+        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-[90%] max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-bold text-gray-800">Chatbot Setup</h1>
           </div>
 
-          <div>
-            <label htmlFor="context" className="block text-sm font-medium text-gray-700 mb-1">
-              Context
-            </label>
-            <textarea
-              id="context"
-              value={context}
-              onChange={(e) => setContext(e.target.value)}
-              placeholder="Enter information about your business that the chatbot should know..."
-              rows={5}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-              required
-            />
-             <button
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label
+                htmlFor="chatbotName"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Chatbot Name
+              </label>
+              <input
+                id="chatbotName"
+                type="text"
+                value={chatbotName}
+                onChange={(e) => setChatbotName(e.target.value)}
+                placeholder="Like Idiot Bot"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="context"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Context
+              </label>
+              <textarea
+                id="context"
+                value={context}
+                onChange={(e) => setContext(e.target.value)}
+                placeholder="Enter information about your business that the chatbot should know..."
+                rows={5}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                required
+              />
+              <button
                 type="button"
                 onClick={handleRandomContext}
                 className="mt-2 bg-gray-800 text-white py-2 px-4 rounded-lg text-xs hover:bg-gray-600 transition"
               >
                 Fill Random Context
               </button>
-          </div>
+            </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting || !chatbotName.trim() || !context.trim()}
-            className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
-          >
-            {isSubmitting ? (
-              <span className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Setting Up...
-              </span>
-            ) : (
-              'Create Chatbot'
-            )}
-          </button>
+            <button
+              type="submit"
+              disabled={isSubmitting || !chatbotName.trim() || !context.trim()}
+              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+            >
+              {isSubmitting ? (
+                <span className="flex items-center justify-center">
+                  <FontAwesomeIcon
+                    icon={faSpinner}
+                    spin
+                    className="h-4 w-4 text-white -ml-1 mr-2"
+                  />
+                  Setting Up...
+                </span>
+              ) : (
+                "Create Chatbot"
+              )}
+            </button>
 
-           <button
-            className="w-full bg-red-400 text-white py-3 px-4 rounded-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
-            onClick={close}
-          >
-            Cancel
-          </button>
-          
-        </form>
+            <button
+              className="w-full bg-red-400 text-white py-3 px-4 rounded-lg font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              onClick={close}
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-     </div>
   );
 };
 
