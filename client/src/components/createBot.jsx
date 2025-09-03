@@ -45,8 +45,8 @@ const CreateBot = ({ whenDone , state , close }) => {
   return (
     <div className={state ? 'block' : 'hidden'}>
     <div className='fixed top-0 bottom-0 left-0 right-0 bg-black opacity-50' onClick={close}></div>
-    <div className="fixed min-h-screen flex items-center w-full justify-center">
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-full max-w-md">
+    <div className="fixed min-h-screen flex items-center w-full  justify-center">
+      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 w-[90%] max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-800">Chatbot Setup</h1>
         </div>

@@ -109,7 +109,7 @@ export default function ChatPage() {
       </main>
 
       <div className="bg-white p-4 border-t border-slate-200">
-        <div className="max-w-3xl mx-auto">
+        <div className="w-full max-w-3xl mx-auto">
           <div className="flex items-center bg-slate-100 rounded-lg p-1.5">
             <input
               value={input}
