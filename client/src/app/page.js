@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import CreateBot from "@/components/createBot";
 
+
 export default function Page() {
   const [chats, setChats] = useState({});
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ export default function Page() {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const res = await fetch("http://localhost:5000/chats");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/chats` || "http://localhost:5000/chats");
         if (!res.ok) throw new Error("Network response was not ok");
         const data = await res.json();
         setChats(data);

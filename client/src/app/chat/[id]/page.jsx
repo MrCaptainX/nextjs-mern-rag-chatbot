@@ -21,7 +21,8 @@ export default function ChatPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:5000/chat", {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/chat` || "http://localhost:5000/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sessionId: id }),
@@ -61,7 +62,7 @@ export default function ChatPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/ask", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ask` || "http://localhost:5000/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
